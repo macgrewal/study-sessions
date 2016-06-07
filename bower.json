@@ -1,0 +1,23 @@
+{
+  "name": "study-sessions",
+  "description": "web app for study sessions",
+  "main": "server.js",
+  "authors": [
+    "mac grewal"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/vendors/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4"
+  },
+  "devDependencies": {}
+}
