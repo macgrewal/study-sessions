@@ -1,0 +1,7 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <h2>Session (@model.id)</h2>
+    
+  })
+})
