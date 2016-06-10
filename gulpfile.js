@@ -5,21 +5,29 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     stylish = require('jshint-stylish');
 
-gulp.task('lint:client', function() {
+gulp.task('bower', function() {
+    return bower();
+});
+
+gulp.task('libs', function() {
+    gulp.src('./assets/libs/jquery/dist/*.min.js', {
+        base: './assets/libs/jquery/dist/'
+    }).pipe(gulp.dest('./public/js/libs/jquery/'));
+});
+
+gulp.task('styles', function() {
+    return gulp.src('./assets/scss/*.scss')
+        .pipe(sass({
+            outputStyle: 'compressed'
+        }).on('error', sass.logError))
+        .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('scripts', function() {
     gulp.src(['./assets/js/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish))
         .pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('bower', function() {
-  return bower();
-});
-
-gulp.task('lint:server', function() {
-    gulp.src(['./*.js', './routes/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('server:watch', function() {
@@ -34,26 +42,18 @@ gulp.task('server:watch', function() {
         });
 });
 
-gulp.task('scss', function() {
-    return gulp.src('./assets/scss/*.scss')
-        .pipe(sass({
-            outputStyle: 'compressed'
-        }).on('error', sass.logError))
-        .pipe(gulp.dest('./public/css'));
+gulp.task('lint:server', function() {
+    gulp.src(['./*.js', './routes/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('style:watch', function() {
-    gulp.watch('./assets/scss/*.scss', ['scss']);
+    gulp.watch('./assets/scss/*.scss', ['styles']);
 });
 
 gulp.task('script:watch', function() {
-    gulp.watch('./assets/js/*.js', ['lint:client']);
+    gulp.watch('./assets/js/*.js', ['scripts']);
 });
 
-gulp.task('vendors', function() {
-    gulp.src('./assets/vendors/jquery/dist/*.min.js', {
-        base: './assets/vendors/jquery/dist/'
-    }).pipe(gulp.dest('./public/js/vendors/jquery/'));
-});
-
-gulp.task('default', ['bower', 'vendors', 'scss', 'lint:client', 'style:watch', 'script:watch', 'server:watch']);
+gulp.task('default', ['bower', 'libs', 'styles', 'scripts', 'style:watch', 'script:watch', 'server:watch']);
