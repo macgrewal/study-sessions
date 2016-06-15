@@ -12,8 +12,8 @@
           <a href="/" class="btn btn-default">Cancel</a>
           <button type="submit" class="btn btn-primary">Next</button>
         </div>
-    </form>
-  </div>
+      </form>
+    </div>
 
   })
 })

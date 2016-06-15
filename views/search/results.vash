@@ -1,0 +1,29 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <table>
+      <tbody>
+
+        <tr class="top">
+          <th class="text">Title</th>
+          <th class="text">Description</th>
+          <th class="text">Type</th>
+          <th class="text">Url</th>
+          <th class="text">Tags</th>
+        </tr>
+
+        @model.data.forEach(function(item){
+          <tr>
+            <td class="text">@item.title</td>
+            <td class="text">@item.description</td>
+            <td class="text">@item.type</td>
+            <td class="text">@item.url</td>
+            <td class="text">@item.tags</td>
+          </tr>
+        })
+
+      </tbody>
+    </table>
+
+  })
+})
