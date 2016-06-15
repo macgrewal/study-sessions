@@ -32,5 +32,8 @@ assets/libs
 # Optional REPL history
 .node_repl_history
 
+# mac osx hidden index files
+*.DS_STORE
+
 .idea/
 public/

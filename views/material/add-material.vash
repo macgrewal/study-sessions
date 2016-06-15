@@ -1,0 +1,19 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <div class="row">
+      <form method="post">
+        @html.input('Title', 'title', model.data.title, 'e.g. Play! framework for Scala', model.state)
+        @html.input('Description', 'description', model.data.description, 'e.g. Walkthrough of creating a Scala, Play! web application.', model.state)
+        @html.input('Type', 'type', model.data.type, 'e.g. Video', model.state)
+        @html.input('Url', 'url', model.data.url, 'e.g. http://www.link.com', model.state)
+        @html.textarea('Tags', 'tags', model.data.tags, 'Enter each tag on a seperate line.', model.state)
+        <div class="form-group">
+          <a href="/" class="btn btn-default">Cancel</a>
+          <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+    </form>
+  </div>
+
+  })
+})
