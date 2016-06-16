@@ -1,29 +1,47 @@
 @html.extend('_layout', function(model) {
   @html.block('content', function(model) {
 
-    <table>
-      <tbody>
+    <div class="row">
+      <form method="post">
+        @html.dropdown('I\'m looking for: ', 'collection', ['anything', 'a study plan', 'some material'], model.data.collection, model.state)
+        @html.input('relating to: ', 'keywords', model.data.keywords, 'e.g. Scala', model.state)
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Search!</button>
+        </div>
+      </form>
+    </div>
 
-        <tr class="top">
-          <th class="text">Title</th>
-          <th class="text">Description</th>
-          <th class="text">Type</th>
-          <th class="text">Url</th>
-          <th class="text">Tags</th>
-        </tr>
+    @if(model.results) {
+    <div class="row">
 
-        @model.data.forEach(function(item){
-          <tr>
-            <td class="text">@item.title</td>
-            <td class="text">@item.description</td>
-            <td class="text">@item.type</td>
-            <td class="text">@item.url</td>
-            <td class="text">@item.tags</td>
+      <h2>Results</h2>
+
+      <table>
+        <tbody>
+
+          <tr class="top">
+            <th class="text">Title</th>
+            <th class="text">Description</th>
+            <th class="text">Type</th>
+            <th class="text">Url</th>
+            <th class="text">Tags</th>
           </tr>
-        })
 
-      </tbody>
-    </table>
+          @model.results.forEach(function(item){
+            <tr>
+              <td class="text">@item.title</td>
+              <td class="text">@item.description</td>
+              <td class="text">@item.type</td>
+              <td class="text">@item.url</td>
+              <td class="text">@item.tags</td>
+            </tr>
+          })
+
+        </tbody>
+      </table>
+      </div>
+
+    }
 
   })
 })
