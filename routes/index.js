@@ -6,6 +6,8 @@
         router = express.Router(),
         api = require('./api'),
         plan = require('./plan'),
+        material = require('./material'),
+        search = require('./search'),
         session = require('./session');
 
     router.get('/', function(req, res) {
@@ -13,6 +15,8 @@
     });
 
     app.use('/plan', plan.init());
+    app.use('/material', material.init());
+    app.use('/search', search.init());
     app.use('/session', session.init());
     app.use('/api', api.init(app));
     app.use('/', router);
