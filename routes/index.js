@@ -1,15 +1,19 @@
 (function (routes) {
 
-  routes.init = function(app) {
+  'use strict';
+
+  routes.init = function (app) {
 
     var express = require('express'),
-        router = express.Router(),
-        api = require('./api'),
-        plan = require('./plan'),
-        session = require('./session');
+      router = express.Router(),
+      api = require('./api'),
+      plan = require('./plan'),
+      session = require('./session');
 
-    router.get('/', function(req, res) {
-      res.render('index', {title: "Welcome"});
+    router.get('/', function (req, res) {
+      res.render('index', {
+        title: "Welcome"
+      });
     });
 
     app.use('/plan', plan.init());
@@ -18,4 +22,4 @@
     app.use('/', router);
   };
 
-})(module.exports);
+}(module.exports));

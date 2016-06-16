@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "gulp": "^3.9.1",
     "mongodb": "^2.1.18",
     "vash": "^0.11.3"
