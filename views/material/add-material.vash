@@ -3,11 +3,11 @@
 
     <div class="row">
       <form method="post">
-        @html.input('Title', 'title', model.data.title, 'e.g. Play! framework for Scala', model.state)
-        @html.input('Description', 'description', model.data.description, 'e.g. Walkthrough of creating a Scala, Play! web application.', model.state)
-        @html.input('Type', 'type', model.data.type, 'e.g. Video', model.state)
-        @html.input('Url', 'url', model.data.url, 'e.g. http://www.link.com', model.state)
-        @html.textarea('Tags', 'tags', model.data.tags, 'Enter each tag on a seperate line.', model.state)
+        @html.input('Name', 'name', model.name, 'e.g. Play! framework for Scala', model)
+        @html.input('Description', 'description', model.description, 'e.g. Walkthrough of creating a Scala, Play! web application.', model)
+        @html.input('Type', 'type', model.type, 'e.g. Video', model)
+        @html.input('Url', 'url', model.url, 'e.g. http://www.link.com', model)
+        @html.textarea('Tags', 'tags', model.tags, 'Enter each tag on a seperate line.', model)
         <div class="form-group">
           <a href="/" class="btn btn-default">Cancel</a>
           <button type="submit" class="btn btn-primary">Next</button>
