@@ -29,3 +29,6 @@ assets/libs
 .idea
 .vscode
 public
+
+# mac osx hidden index files
+*.DS_STORE
