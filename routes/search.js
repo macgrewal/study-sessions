@@ -1,9 +1,12 @@
 (function (routes) {
 
-    var errorsHelper = require('../utils/ui-error-helper');
-    var data = require('../data');
+  'use strict';
 
-    routes.init = function () {
+  var extend = require('util')._extend,
+    modelHelper = require('../utils/model-helper'),
+    data = require('../data');
+
+  routes.init = function () {
 
         var express = require('express'),
             router = express.Router();
@@ -13,7 +16,7 @@
                 title: 'Search',
                 data: {},
                 results: null,
-                state: errorsHelper.init()
+                state: modelHelper.init()
             });
         });
 
@@ -27,7 +30,7 @@
 
             if (!criteria.collection) errors.push({ key: 'collection', message: 'Select an option.' });
 
-            var state = errorsHelper.init(criteria, errors);
+            var state = modelHelper.init(req, criteria, errors);
 
             if (!state.hasErrors()) {
               data.material(function (err, results) {
@@ -39,7 +42,7 @@
                         title: 'Search',
                         data: criteria,
                         results: results,
-                        state: errorsHelper.init()
+                        state: modelHelper.init(req)
                     });
                   }
               });
