@@ -63,7 +63,7 @@
           model = modelHelper.init(req, model, errors);
 
           if (model.isValid()) {
-            req.material = {
+            var obj = {
               name: model.name,
               description: model.description,
               type: model.type, 
@@ -71,7 +71,7 @@
               tags: model.tags.split('\n').join(',')
             };
 
-            res.redirect('material/add-material');
+            res.redirect('material');
           } else {
             res.status(400);
             model.title = 'Add material';

@@ -23,6 +23,7 @@ app.use(flash());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+app.use(bodyParser.json());
 
 // set view engine to vash
 app.set('view engine', 'vash');
