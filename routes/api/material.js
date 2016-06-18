@@ -26,7 +26,10 @@
       });
     });
 
-    router.post('/', function (req, res) {
+    var bodyParser = require('body-parser');
+    var jsonParser = bodyParser.json();
+
+    router.post('/', jsonParser, function (req, res) {
       data.insert(req.body, function (err, results) {
         if (err) {
           res.err(err);
