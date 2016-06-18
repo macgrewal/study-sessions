@@ -64,14 +64,29 @@
 
           if (model.isValid()) {
             var obj = {
-              name: model.name,
-              description: model.description,
-              type: model.type, 
-              url: model.url,
-              tags: model.tags.split('\n').join(',')
+                name: model.name,
+                description: model.description,
+                type: model.type, 
+                url: model.url,
+                tags: model.tags.split('\r\n')
             };
 
-            res.redirect('material');
+            require('request')({
+              url: req.protocol + '://' + req.get('host') + '/api/material',
+              method: 'POST',
+              json: obj
+            }, function(err, resp, body) {
+                if (body._id) {
+                    req.flash('success', 'Your material has been added!');
+                    res.redirect('/material');
+                } else {
+                    console.log('error saving data');
+                    res.status(400);
+                    model.title = 'Add material';
+                    res.render('material/add-material', model);
+                }
+            });
+
           } else {
             res.status(400);
             model.title = 'Add material';
