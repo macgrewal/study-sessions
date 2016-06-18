@@ -1,8 +1,11 @@
-(function(routes) {
+(function (routes) {
 
-    var errorsHelper = require('../utils/ui-error-helper');
+  'use strict';
 
-    routes.init = function() {
+  var extend = require('util')._extend,
+    modelHelper = require('../utils/model-helper');
+
+  routes.init = function () {
 
         var express = require('express'),
             router = express.Router();
@@ -11,7 +14,7 @@
             res.render('material/add-material', {
                 title: 'Add material',
                 data: {},
-                state: errorsHelper.init()
+                state: modelHelper.init(req)
             });
         });
 
@@ -32,7 +35,7 @@
             if (!material.url) errors.push({ key: 'url', message: 'Enter the url of the material.' });
             if (!material.tags) errors.push({ key: 'tags', message: 'Enter at least one tag e.g. the subject.'});
 
-            var state = errorsHelper.init(material, errors);
+            var state = modelHelper.init(req, material, errors);
 
             if (!state.hasErrors()) {
                 res.redirect('/material');
