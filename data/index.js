@@ -52,7 +52,23 @@
         });
       }
     });
-  }
+  };
+
+  data.insert = function (item, next) {
+    database.get(function (err, db) {
+      if (err) {
+        next(err);
+      } else {
+        db.material.insert(item, function (err) {
+          if (err) {
+            next(err);
+          } else {
+            next(null, item);
+          }
+        });
+      }
+    });
+  };
 
   seedDatabase();
 
