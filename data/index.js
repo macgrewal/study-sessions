@@ -38,7 +38,19 @@
         });
       }
     });
-  }
+  };
+
+  data.insert = function (item) {
+    database.get(function (err, db) {
+      if (err) {
+        console.log('Failed to seed database: ' + err);
+      } else {
+        db.material.insert(item, function (err) {
+          if (err) console.log('Failed to insert material into database');
+        });
+      }
+    });
+  };
 
   seedDatabase();
 
