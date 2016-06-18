@@ -40,13 +40,17 @@
     });
   };
 
-  data.insert = function (item) {
+  data.insert = function (item, next) {
     database.get(function (err, db) {
       if (err) {
-        console.log('Failed to seed database: ' + err);
+        next(err);
       } else {
         db.material.insert(item, function (err) {
-          if (err) console.log('Failed to insert material into database');
+          if (err) {
+            next(err);
+          } else {
+            next(null, item);
+          }
         });
       }
     });

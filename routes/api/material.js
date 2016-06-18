@@ -21,12 +21,20 @@
 
     router.post('/', function (req, res) {
       var material = req.body;
-      //get tags and replace any trailing newlines
+      // get tags and replace any trailing newlines
       var tags = material.tags.replace(new RegExp('%0D%0A$'), '');
+      // split tags into array
       tags = material.tags.split("%0D%0A");
+      // put tags array back into object
       material.tags = tags;
-      
-      data.insert(req.body);
+
+      data.insert(req.body, function (err, results) {
+        if (err) {
+          res.err(err);
+        } else {
+          res.send(results);
+        }
+      });
     });
 
     return router;
