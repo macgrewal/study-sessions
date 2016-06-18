@@ -16,7 +16,7 @@
                 title: 'Search',
                 data: {},
                 results: null,
-                state: modelHelper.init()
+                state: modelHelper.init(req)
             });
         });
 
