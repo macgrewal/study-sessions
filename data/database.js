@@ -1,27 +1,27 @@
 (function (database) {
 
-    var mongo = require('mongodb'),
-        client = mongo.MongoClient,
-        mongoUrl = 'mongodb://localhost:27017/study-sessions',
-        _db = null;
+  'use strict';
 
-    database.get = function (next) {
-        if (!_db) {
-            client.connect(mongoUrl, function (err, db) {
-                if (err) {
-                    next(err);
-                }
-                else {
-                    _db = {
-                        db: db,
-                        material: db.collection('material')
-                    };
-                    next(null, _db);
-                }
-            });
+  var mongo = require('mongodb'),
+    client = mongo.MongoClient,
+    mongoUrl = 'mongodb://localhost:27017/study-sessions',
+    _db = null;
+
+  database.get = function (next) {
+    if (!_db) {
+      client.connect(mongoUrl, function (err, db) {
+        if (err) {
+          next(err);
+        } else {
+          _db = {
+            db: db,
+            material: db.collection('material')
+          };
+          next(null, _db);
         }
-        else {
-            next(null, _db);
-        }
-    };
-})(module.exports);
+      });
+    } else {
+      next(null, _db);
+    }
+  };
+}(module.exports));

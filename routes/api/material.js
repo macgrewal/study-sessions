@@ -1,24 +1,25 @@
 (function (routes) {
 
-    var data = require('../../data');
+  'use strict';
 
-    routes.init = function () {
+  var data = require('../../data');
 
-        var express = require('express'),
-            router = express.Router();
+  routes.init = function () {
 
-        router.get('/', function (req, res) {
-            data.material(function (err, results) {
-                if (err) {
-                    res.err(err);
-                }
-                else {
-                    res.send(results);
-                }
-            });
-        });
+    var express = require('express'),
+      router = express.Router();
 
-        return router;
-    };
+    router.get('/', function (req, res) {
+      data.material(function (err, results) {
+        if (err) {
+          res.err(err);
+        } else {
+          res.send(results);
+        }
+      });
+    });
 
-})(module.exports);
+    return router;
+  };
+
+}(module.exports));

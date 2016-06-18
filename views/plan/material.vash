@@ -1,0 +1,25 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <div class="row">
+      <dl>
+        <dd>Name</dd>
+        <dt>@model.name</dt>
+        <dd>Goal</dd>
+        <dt>@model.goal</dt>
+      </dl>
+    </div>
+    <div class="row">
+      <form method="post">
+        <input type="hidden" name="name" value="@model.name"  />
+        <input type="hidden" name="goal" value="@model.goal"  />
+        <input type="hidden" name="tags" value="@model.tags"  />
+        <table class="table .table-hover" data-src="/api/material" data-filter="@model.tags">
+          <legend class="sr-only">List of material related to the tags you specified.</legend>
+        </table>
+        <button type="submit" class="btn btn-primary">Next</button>
+      </form>
+    </div>
+
+  })
+})

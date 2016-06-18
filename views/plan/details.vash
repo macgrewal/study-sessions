@@ -1,0 +1,16 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <div class="row">
+      <form method="post">
+        @html.input('Name', 'name', model.name, 'e.g. Scala 101', model)
+        @html.input('Goal', 'goal', model.goal, 'e.g. Write Hello, World! app.', model)
+        @html.textarea('Tags', 'tags', model.tags, 'Enter each tag on a separate line.', model)
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Next</button>
+        </div>
+      </form>
+    </div>
+
+  })
+})
