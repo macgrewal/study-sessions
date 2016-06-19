@@ -10,7 +10,7 @@
     @if(model.results) {
     <div class="row">
 
-      <h2>Results</h2>
+      <h3>Results</h3>
 
           @model.results.forEach(function(item){
             <div class="list-group">

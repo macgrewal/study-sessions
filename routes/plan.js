@@ -89,7 +89,7 @@
       model = modelHelper.init(req, model, errors);
 
       if (model.isValid()) {
-        req.flash('success', 'You\'re study plan has been created');
+        req.flash('success', 'Your study plan has been created');
         res.redirect('/plan');
       } else {
         model = extend(model, req.session.plan);
