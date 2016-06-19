@@ -12,10 +12,12 @@
     router.get('/', function(req, res) {
       var tags = req.query.tags || '',
         type = req.query.type || '',
+        id = req.query.id || '',
         options = {};
 
       if (tags) options.tags = tags.split(',');
       if (type) options.type = type;
+      if (id) options.id = id;
 
       data.material(options, function(err, results) {
         if (err) {

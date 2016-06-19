@@ -42,6 +42,10 @@
     type: "tutorial",
     url: "https://try.github.io/levels/1/challenges/1",
     tags: ["GitHub"]
+  }, {
+    name: "DDCT onboarding - developer",
+    goal: "To learn DDCT developer essentials.",
+    material: ["Play","Scala","DDCT"],
+    tags: ["Play","Scala","DDCT"]
   }];
-
 })(module.exports);

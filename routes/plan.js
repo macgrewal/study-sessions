@@ -17,6 +17,23 @@
       res.render('plan/details', model);
     });
 
+    // GET: /plan/id
+    router.get('/:id', function (req, res) {
+      var request = require('request');
+      request({
+          url: req.protocol + '://' + req.get('host') + '/api/material?id=' + req.params.id,
+          method: 'GET',
+        }, function(err, resp, body) {
+              var result = JSON.parse(body)[0];
+
+              res.render('plan/plan', {
+                  title: result.name,
+                  data: result,
+                  state: modelHelper.init(req)
+              });
+        });
+    });
+
     // POST: /plan
     router.post('/', function (req, res) {
 

@@ -6,7 +6,8 @@
 
   data.material = function(options, next) {
 
-    var filter = {};
+    var filter = {},
+      ObjectId = require('mongodb').ObjectId;
 
     if (options.tags) {
       filter.tags = {
@@ -16,6 +17,10 @@
 
     if (options.type) {
       filter.type = new RegExp('^' + options.type + '$', 'i');
+    }
+
+    if (options.id) {
+      filter = {"_id" : new ObjectId(options.id.toString())};
     }
 
     database.get(function(err, db) {

@@ -1,0 +1,19 @@
+@html.extend('_layout', function(model) {
+  @html.block('content', function(model) {
+
+    <div class="row">
+      <p>Goal: @model.data.goal</p>
+      <p>Tags: @model.data.tags.join(', ')</p>
+    </div>
+
+    <div class="row">
+      <h4>Material:</h4>
+      <ul>
+        @model.data.material.forEach(function(item){
+          <li>@item</li>
+        })
+      </ul>
+    </div>
+
+  })
+})

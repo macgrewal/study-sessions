@@ -15,8 +15,14 @@
           @model.results.forEach(function(item){
             <div class="list-group">
               <a href="@item.url" class="list-group-item">
-                <h4 class="list-group-item-heading"><b>@item.name</b> | @item.type</h4>
-                <p class="list-group-item-text">@item.description</p>
+                <h4 class="list-group-item-heading"><b>@item.name : </b>
+                  @if(item.type) { 
+                    <span class=""> Material | @item.type</span>
+                  } else {
+                    <span> Plan</span>
+                  }
+                </h4>
+                <p class="list-group-item-text">@item.description@item.goal</p>
                 <br />
                 <p class="list-group-item-text">@item.tags.join(', ')</p>
               </a>
