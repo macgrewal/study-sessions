@@ -1,12 +1,12 @@
 (function (helpers) {
 
   var input = require('./input'),
-      dropdown = require('./dropdown'),
+      search = require('./search'),
       textarea = require('./textarea');
 
   helpers.init = function() {
     input.init();
-    dropdown.init();
+    search.init();
     textarea.init();
   };
 

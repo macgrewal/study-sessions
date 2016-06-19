@@ -3,11 +3,7 @@
 
     <div class="row">
       <form method="post">
-        @html.dropdown('I\'m looking for: ', 'collection', ['anything', 'a study plan', 'some material'], model.data.collection, model.state)
-        @html.input('relating to: ', 'keywords', model.data.keywords, 'e.g. Scala', model.state)
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Search!</button>
-        </div>
+        @html.search('', 'keywords', model.keywords, 'e.g. Scala Play Framework', model.state)
       </form>
     </div>
 
@@ -16,29 +12,17 @@
 
       <h2>Results</h2>
 
-      <table>
-        <tbody>
-
-          <tr class="top">
-            <th class="text">Title</th>
-            <th class="text">Description</th>
-            <th class="text">Type</th>
-            <th class="text">Url</th>
-            <th class="text">Tags</th>
-          </tr>
-
           @model.results.forEach(function(item){
-            <tr>
-              <td class="text">@item.title</td>
-              <td class="text">@item.description</td>
-              <td class="text">@item.type</td>
-              <td class="text">@item.url</td>
-              <td class="text">@item.tags</td>
-            </tr>
+            <div class="list-group">
+              <a href="@item.url" class="list-group-item">
+                <h4 class="list-group-item-heading"><b>@item.name</b> | @item.type</h4>
+                <p class="list-group-item-text">@item.description</p>
+                <br />
+                <p class="list-group-item-text">@item.tags.join(', ')</p>
+              </a>
+            </div>
           })
 
-        </tbody>
-      </table>
       </div>
 
     }
