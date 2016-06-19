@@ -21,19 +21,12 @@
         });
 
         router.post('/', function(req, res) {
-            var criteria = {
-                collection: req.body.collection.trim() || '',
-                keywords: req.body.keywords.trim() || ''
-            };
+            var criteria = req.body.keywords.trim().split(' ') || '';
 
-            var errors = [];
-
-            if (!criteria.collection) errors.push({ key: 'collection', message: 'Select an option.' });
-
-            var state = modelHelper.init(req, criteria, errors);
-
-            if (!state.hasErrors()) {
-              data.material(function (err, results) {
+            require('request')({
+              url: req.protocol + '://' + req.get('host') + '/api/material?tags=' + criteria,
+              method: 'GET'
+            }, function(err, resp, body) {
                   if (err) {
                       res.err(err);
                   }
@@ -41,21 +34,11 @@
                     res.render('search/results', {
                         title: 'Search',
                         data: criteria,
-                        results: results,
+                        results: JSON.parse(body),
                         state: modelHelper.init(req)
                     });
                   }
-              });
-            }
-            else {
-              res.status(400);
-                res.render('search/results', {
-                    title: 'Search',
-                    data: criteria,
-                    results: null,
-                    state: state
-                });
-            }
+            });
         });
 
         return router;

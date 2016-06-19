@@ -3,11 +3,7 @@
 
     <div class="row">
       <form method="post">
-        @html.dropdown('I\'m looking for: ', 'collection', ['anything', 'a study plan', 'some material'], model.data.collection, model.state)
-        @html.input('relating to: ', 'keywords', model.data.keywords, 'e.g. Scala', model.state)
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Search!</button>
-        </div>
+        @html.search('', 'keywords', model.keywords, 'e.g. Scala Play Framework', model.state)
       </form>
     </div>
 
@@ -29,7 +25,7 @@
 
           @model.results.forEach(function(item){
             <tr>
-              <td class="text">@item.title</td>
+              <td class="text">@item.name</td>
               <td class="text">@item.description</td>
               <td class="text">@item.type</td>
               <td class="text">@item.url</td>
