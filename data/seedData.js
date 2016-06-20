@@ -1,5 +1,7 @@
 (function (seedData) {
 
+  'use strict';
+
   seedData.material = [{
     name: "The Neophyte's Guide to Scala Part 1: Extractors",
     description: "Explanation of how objects are deconstructed so that they can be used in pattern matching.",
@@ -42,10 +44,13 @@
     type: "tutorial",
     url: "https://try.github.io/levels/1/challenges/1",
     tags: ["GitHub"]
-  }, {
+  }];
+
+  seedData.plan = [{
     name: "DDCT onboarding - developer",
     goal: "To learn DDCT developer essentials.",
-    material: ["Play","Scala","DDCT"],
-    tags: ["Play","Scala","DDCT"]
+    material: ["Play", "Scala", "DDCT"],
+    tags: ["Play", "Scala", "DDCT"]
   }];
-})(module.exports);
+
+}(module.exports));
