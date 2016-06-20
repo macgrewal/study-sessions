@@ -15,7 +15,8 @@
         } else {
           _db = {
             db: db,
-            material: db.collection('material')
+            material: db.collection('material'),
+            plan: db.collection('plan')
           };
           next(null, _db);
         }
